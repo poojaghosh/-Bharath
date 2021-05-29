@@ -1,0 +1,152 @@
+*{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+.close:not(:disabled):not(.disabled):focus, .close:not(:disabled):not(.disabled):hover{
+    outline: 0;
+}
+header{
+    background: #837873;
+}
+.nav-wrapper{
+    display: flex;  
+}
+div.navbar{
+    background: #2d6caf;
+	padding: 6px 6px;
+}
+.h_nav ul{
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+.h_nav ul a{
+    text-decoration: none;
+    color: white;
+    padding: 0 10px;
+    text-shadow: 2px 2px #FF0000;
+}
+
+/*landing page CSS*/
+.landing_pg .carousel-indicators{
+    right: auto;
+    margin-left: 5%;
+}
+.landing_pg .carousel-indicators li{
+    width: 10px;
+    height: 10px;
+}
+
+.searchbox{
+    position: absolute;
+   width: 50%;
+   z-index: 1;
+   top: 50%;
+    left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 2px 2px #FF0000;
+}
+
+.linkbox {
+    position: absolute;
+    width: 50%;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px #FF0000;
+    background-color:lightblue;
+}
+
+.searchbox h1{
+    font-size: 50px;
+}
+.searchbox input.searchtext{
+    border-radius: 23px !important;
+
+}
+.searchbox .input-group-append button,
+.searchbox .input-group-append button:focus{
+    border-radius: 23px !important;
+    background: #FFBF00;
+    border: #FFBF00;
+    font-weight: bold;
+    font-size: 18px;
+}
+.searchbox .input-group-append button:hover{
+    background-color: #1e7e34;
+    border-color: #1c7430;
+}
+
+.about{
+    background: url("Images/KFC.JPG");
+    background-size: cover;
+    min-height: 90.5vh;
+    color:#566573;
+    font-style: italic;
+    text-transform: capitalize;
+
+}
+.about .connect h3{
+    color: #566573;
+}
+.about p{
+    font-size: 24px;
+    font-family: cursive;
+}
+
+.about .connect h2{
+    font-size: 40px;
+}
+/* Search Modal */
+.modal form .form-group {
+    margin-bottom: 0.6rem;
+}
+
+.form-check-label{
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+#searchmodal.show .modal-dialog{
+    transform: translate(-7%,20%);
+}
+#searchmodal .modal-content{
+    background: transparent;
+    border: none;
+}
+#searchmodal .modal-body{
+    background: #F5EEF8;
+}
+
+#searchmodal .modal-header{
+    background:#EECCC4;
+    color:#6e2c00;
+}
+
+#searchmodal .enquire{
+    background: #ffbf00;
+    color: white;
+}
+
+#searchmodal .modal-footer button:hover,
+#searchmodal .modal-footer button:focus{
+    background-color: #1e7e34;
+    border-color: #1c7430;
+}
+
+/* Welcome Modal */
+
+#welcomemodal .modal-content{
+    background: #FDF2E9;
+}
+
+#welcomemodal .modal-dialog{
+    margin: 0px auto;
+}

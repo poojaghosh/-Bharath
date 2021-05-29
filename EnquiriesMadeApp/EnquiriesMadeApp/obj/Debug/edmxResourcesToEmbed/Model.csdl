@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EnquiriesMadeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ProductDetails" Relationship="EnquiriesMadeModel.FK_ProductDetails_Product" FromRole="Product" ToRole="ProductDetail" />
+    <NavigationProperty Name="Retailers" Relationship="EnquiriesMadeModel.FK_Retailers_Product" FromRole="Product" ToRole="Retailer" />
+  </EntityType>
+  <EntityContainer Name="EnquiriesMadeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Users" EntityType="EnquiriesMadeModel.User" />
+    <EntitySet Name="ProductDetails" EntityType="EnquiriesMadeModel.ProductDetail" />
+    <AssociationSet Name="FK_ProductDetails_Product" Association="EnquiriesMadeModel.FK_ProductDetails_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductDetail" EntitySet="ProductDetails" />
+    </AssociationSet>
+    <EntitySet Name="Retailers" EntityType="EnquiriesMadeModel.Retailer" />
+    <AssociationSet Name="FK_Retailers_Product" Association="EnquiriesMadeModel.FK_Retailers_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Retailer" EntitySet="Retailers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Emailnotification" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ProductDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="ProductLink" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProductImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Product" Relationship="EnquiriesMadeModel.FK_ProductDetails_Product" FromRole="ProductDetail" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_ProductDetails_Product">
+    <End Type="EnquiriesMadeModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="EnquiriesMadeModel.ProductDetail" Role="ProductDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Retailer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="productId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="EnquiriesMadeModel.FK_Retailers_Product" FromRole="Retailer" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_Retailers_Product">
+    <End Type="EnquiriesMadeModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="EnquiriesMadeModel.Retailer" Role="Retailer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Retailer">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
